@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# installer.sh — Set up everything needed to drive a Canon LiDE 110
-# (and most other SANE-supported scanners) on macOS, including the GUI.
+# installer.sh — Set up everything needed to drive any SANE-supported
+# scanner (Canon, Epson, HP, Brother, …) on macOS, including the GUI.
 #
 # Installs:  Homebrew (if missing) -> sane-backends -> python-tk
-# Verifies:  the scanner is detected by SANE
+# Verifies:  a scanner is detected by SANE
 #
 # Usage:  ./installer.sh
 #
@@ -16,7 +16,7 @@ ok()   { printf "\033[32m✓\033[0m %s\n" "$1"; }
 warn() { printf "\033[33m!\033[0m %s\n" "$1"; }
 err()  { printf "\033[31m✗\033[0m %s\n" "$1"; }
 
-bold "Canon LiDE 110 scanner — setup"
+bold "sane-scan-mac — scanner setup"
 echo
 
 # ---- 1. Homebrew -----------------------------------------------------------
@@ -60,7 +60,7 @@ fi
 # ---- 4. Verify the scanner -------------------------------------------------
 echo
 bold "Looking for your scanner…"
-if scanimage -L 2>/dev/null | grep -qi "genesys\|canon\|lide"; then
+if scanimage -L 2>/dev/null | grep -qi "device"; then
   ok "Scanner detected:"
   scanimage -L 2>/dev/null | sed 's/^/    /'
   echo
